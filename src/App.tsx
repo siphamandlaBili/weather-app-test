@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import Layout from "./components/Layout";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import { ThemeProvider } from "./context/theme-provider";

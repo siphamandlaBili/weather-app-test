@@ -1,4 +1,4 @@
-import type { Coordinates, MainWeatherData, ForecastData, GeocodingResponse } from "@/api/types";
+import type { Coordinates } from "@/api/types";
 import { weatherAPI } from "@/api/weather";
 import { useQuery } from "@tanstack/react-query";
 
