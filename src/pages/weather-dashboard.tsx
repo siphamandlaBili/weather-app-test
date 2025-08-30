@@ -4,6 +4,8 @@ import { AlertTriangle, MapPin, RefreshCw } from 'lucide-react';
 import LoadingSkeleton from "../components/LoadingSkeleton"
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from '@/hooks/use-weather';
+import CurrentWeather from '@/components/current-weather';
+import HourlyTemperature from '@/components/hourly-temprature';
 
 const WeatherDashboard = () => {
   const { coordinates, error:locationError, isLoading:locationLoading, getLocation } = useGeoLocation();
@@ -85,6 +87,14 @@ const WeatherDashboard = () => {
         >
             <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching?"animate-spin":""}`}/>
         </Button>
+      </div>
+
+      <div className='grid gap-6'>
+        <div >
+            <CurrentWeather data={weatherQuery.data} locationName={locationName} />
+            <HourlyTemperature data={forecastQuery.data} />
+        </div>
+        <div></div>
       </div>
     </div>
   )
