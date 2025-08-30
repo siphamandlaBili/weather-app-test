@@ -28,15 +28,28 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
     } = data;
 
     return (
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden flex-1">
             <CardContent className="p-6">
                 <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-4">
                         <div className="space-y-2">
                             <div className="flex items-end gap-1">
-                                <h2 className="text-2xl font-bold tracking-tighter">{locationName?.name}</h2>
-                                {locationName?.state && <span className="text-muted-foreground">, {locationName.state}</span>}
+                                <h2 className="text-2xl font-bold tracking-tighter">
+                                    {locationName?.name
+                                        ? locationName.name.length > 17
+                                            ? locationName.name.slice(0, 17) + "…"
+                                            : locationName.name
+                                        : ""}
+                                </h2>
+                                {locationName?.state && (
+                                    <span className="text-muted-foreground">
+                                        , {locationName.state.length > 17
+                                            ? locationName.state.slice(0, 17) + "…"
+                                            : locationName.state}
+                                    </span>
+                                )}
                             </div>
+
                             <p className="text-sm text-muted-foreground">{locationName?.country}</p>
                         </div>
                         <div className="flex items-center gap-2">
@@ -77,12 +90,12 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                    <div className="relative flex aspect-square w-full max-w-[200px] items-center justify-center">
-                        <img className="h-full w-full object-contain" src={`https://openweathermap.org/img/wn/${currentWeather.icon}@4x.png`} alt={currentWeather.description} />
-                        <div className="absolute bottom-0 text-center">
-                            <p className="text-sm font-medium capitalize">{currentWeather.description}</p>
+                        <div className="relative flex aspect-square w-full max-w-[200px] items-center justify-center">
+                            <img className="h-full w-full object-contain" src={`https://openweathermap.org/img/wn/${currentWeather.icon}@4x.png`} alt={currentWeather.description} />
+                            <div className="absolute bottom-0 text-center">
+                                <p className="text-sm font-medium capitalize">{currentWeather.description}</p>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 
